@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Official Mr Pastore verification page for the latest Telegram bot and admin contact."
+    />
+    <title>Mr Pastore | Official Bot & Contact Verification</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #06100f;
+        --panel: rgba(7, 18, 19, 0.78);
+        --panel-strong: rgba(10, 29, 31, 0.92);
+        --line: rgba(188, 255, 229, 0.18);
+        --text: #eefdf8;
+        --muted: #9dbab3;
+        --gold: #f5c86a;
+        --mint: #51e6a9;
+        --cyan: #45c9ff;
+        --danger: #ff8b7b;
+        --shadow: 0 28px 90px rgba(0, 0, 0, 0.45);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        min-height: 100%;
+        background: var(--bg);
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 12% 18%, rgba(81, 230, 169, 0.28), transparent 28%),
+          radial-gradient(circle at 82% 14%, rgba(69, 201, 255, 0.25), transparent 28%),
+          radial-gradient(circle at 70% 84%, rgba(245, 200, 106, 0.2), transparent 32%),
+          linear-gradient(135deg, #031312 0%, #071a1c 42%, #101006 100%);
+        overflow-x: hidden;
+      }
+
+      body::before,
+      body::after {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        content: "";
+      }
+
+      body::before {
+        opacity: 0.22;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: linear-gradient(to bottom, black, transparent 88%);
+      }
+
+      body::after {
+        opacity: 0.23;
+        background:
+          linear-gradient(120deg, transparent 0 18%, rgba(81, 230, 169, 0.35) 18.2% 18.6%, transparent 18.8% 33%),
+          linear-gradient(150deg, transparent 0 42%, rgba(245, 200, 106, 0.28) 42.2% 42.7%, transparent 43% 100%),
+          linear-gradient(35deg, transparent 0 64%, rgba(69, 201, 255, 0.24) 64.2% 64.6%, transparent 64.8% 100%);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        min-height: 100vh;
+        align-items: center;
+        padding: 44px 20px;
+      }
+
+      .shell {
+        width: min(1120px, 100%);
+        margin: 0 auto;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 34px;
+      }
+
+      .brand {
+        display: flex;
+        min-width: 0;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .mark {
+        display: grid;
+        width: 54px;
+        height: 54px;
+        flex: 0 0 auto;
+        place-items: center;
+        border: 1px solid rgba(245, 200, 106, 0.4);
+        border-radius: 8px;
+        background:
+          linear-gradient(145deg, rgba(245, 200, 106, 0.2), transparent),
+          rgba(2, 10, 11, 0.58);
+        box-shadow: 0 18px 45px rgba(245, 200, 106, 0.12);
+        color: var(--gold);
+        font-size: 1.25rem;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      .brand-name {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 800;
+      }
+
+      .brand-meta {
+        margin: 3px 0 0;
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 10px 13px;
+        border: 1px solid rgba(81, 230, 169, 0.24);
+        border-radius: 8px;
+        background: rgba(5, 23, 22, 0.58);
+        color: #d7fff0;
+        font-size: 0.9rem;
+        white-space: nowrap;
+      }
+
+      .status-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--mint);
+        box-shadow: 0 0 0 6px rgba(81, 230, 169, 0.13);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.96fr);
+        gap: 28px;
+        align-items: stretch;
+      }
+
+      .hero-copy,
+      .verification {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(20px);
+      }
+
+      .hero-copy {
+        position: relative;
+        min-height: 580px;
+        padding: 48px;
+        overflow: hidden;
+      }
+
+      .hero-copy::before {
+        position: absolute;
+        inset: auto -12% -20% 12%;
+        height: 240px;
+        content: "";
+        background:
+          linear-gradient(135deg, transparent 8%, rgba(81, 230, 169, 0.28) 8.3% 9.2%, transparent 9.5% 22%),
+          linear-gradient(25deg, transparent 25%, rgba(245, 200, 106, 0.32) 25.3% 26.1%, transparent 26.5% 100%);
+        transform: rotate(-5deg);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 20px;
+        color: var(--gold);
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        width: 34px;
+        height: 2px;
+        background: var(--gold);
+        content: "";
+      }
+
+      h1 {
+        max-width: 780px;
+        margin: 0;
+        font-size: clamp(2.65rem, 7vw, 5.9rem);
+        line-height: 0.92;
+        letter-spacing: 0;
+      }
+
+      .accent {
+        color: transparent;
+        background: linear-gradient(90deg, var(--mint), var(--cyan), var(--gold));
+        background-clip: text;
+        -webkit-background-clip: text;
+      }
+
+      .lead {
+        max-width: 620px;
+        margin: 26px 0 0;
+        color: #c8ddd8;
+        font-size: clamp(1.02rem, 2vw, 1.2rem);
+        line-height: 1.75;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 32px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 54px;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 19px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        font-weight: 850;
+        text-decoration: none;
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          background 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button-primary {
+        background: linear-gradient(135deg, #47e1a4, #36bdf1 54%, #f5c86a);
+        color: #041211;
+        box-shadow: 0 18px 44px rgba(54, 189, 241, 0.24);
+      }
+
+      .button-secondary {
+        border-color: rgba(245, 200, 106, 0.34);
+        background: rgba(245, 200, 106, 0.1);
+        color: #fff5d9;
+      }
+
+      .ticker {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 44px;
+      }
+
+      .quote {
+        min-width: 0;
+        padding: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.055);
+      }
+
+      .pair {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        color: #dcebe7;
+        font-size: 0.82rem;
+        font-weight: 800;
+      }
+
+      .price {
+        margin-top: 10px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 1rem;
+      }
+
+      .up {
+        color: var(--mint);
+      }
+
+      .down {
+        color: var(--danger);
+      }
+
+      .verification {
+        padding: 22px;
+        background: var(--panel-strong);
+      }
+
+      .screen {
+        min-height: 100%;
+        border: 1px solid rgba(81, 230, 169, 0.17);
+        border-radius: 8px;
+        background:
+          linear-gradient(180deg, rgba(12, 42, 43, 0.9), rgba(3, 12, 12, 0.95)),
+          repeating-linear-gradient(90deg, transparent 0 23px, rgba(255, 255, 255, 0.04) 24px);
+        overflow: hidden;
+      }
+
+      .screen-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 18px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .screen-title {
+        margin: 0;
+        font-size: 0.86rem;
+        font-weight: 800;
+      }
+
+      .bars {
+        display: flex;
+        align-items: end;
+        gap: 5px;
+        height: 22px;
+      }
+
+      .bar {
+        width: 7px;
+        border-radius: 3px 3px 0 0;
+        background: linear-gradient(to top, var(--mint), var(--gold));
+      }
+
+      .bar:nth-child(1) {
+        height: 35%;
+      }
+
+      .bar:nth-child(2) {
+        height: 66%;
+      }
+
+      .bar:nth-child(3) {
+        height: 48%;
+      }
+
+      .bar:nth-child(4) {
+        height: 90%;
+      }
+
+      .cards {
+        display: grid;
+        gap: 16px;
+        padding: 20px;
+      }
+
+      .contact-card {
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.11);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .card-kicker {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 11px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .verified {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--mint);
+        letter-spacing: 0;
+        text-transform: none;
+      }
+
+      .handle {
+        display: block;
+        margin-bottom: 13px;
+        color: #ffffff;
+        font-size: clamp(1.28rem, 3vw, 1.75rem);
+        font-weight: 900;
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+        text-decoration: none;
+      }
+
+      .handle:hover {
+        color: #d8fff1;
+      }
+
+      .card-copy {
+        margin: 0;
+        color: #b7cdc8;
+        line-height: 1.6;
+      }
+
+      .notice {
+        margin: 4px 20px 20px;
+        padding: 17px;
+        border: 1px solid rgba(245, 200, 106, 0.26);
+        border-radius: 8px;
+        background: rgba(245, 200, 106, 0.09);
+        color: #ffeec0;
+        line-height: 1.55;
+      }
+
+      .fine-print {
+        margin: 22px 0 0;
+        color: rgba(238, 253, 248, 0.62);
+        font-size: 0.84rem;
+        line-height: 1.55;
+      }
+
+      @media (max-width: 880px) {
+        .page {
+          align-items: flex-start;
+          padding-block: 24px;
+        }
+
+        .topbar,
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar {
+          align-items: flex-start;
+          flex-direction: column;
+          margin-bottom: 18px;
+        }
+
+        .hero-copy {
+          min-height: auto;
+          padding: 32px 22px;
+        }
+
+        .verification {
+          padding: 14px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .page {
+          padding-inline: 14px;
+        }
+
+        .status {
+          width: 100%;
+          justify-content: center;
+          white-space: normal;
+        }
+
+        .actions,
+        .button {
+          width: 100%;
+        }
+
+        .ticker {
+          grid-template-columns: 1fr;
+          margin-top: 30px;
+        }
+
+        .screen-head,
+        .cards {
+          padding-inline: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="shell">
+        <header class="topbar" aria-label="Official Mr Pastore verification header">
+          <div class="brand">
+            <div class="mark" aria-hidden="true">MP</div>
+            <div>
+              <p class="brand-name">Mr Pastore</p>
+              <p class="brand-meta">Official Telegram access point</p>
+            </div>
+          </div>
+          <div class="status">
+            <span class="status-dot" aria-hidden="true"></span>
+            Official links currently active
+          </div>
+        </header>
+
+        <section class="hero" aria-label="Mr Pastore official bot and admin links">
+          <div class="hero-copy">
+            <p class="eyebrow">Verified forex bot access</p>
+            <h1>Smart Traders, thread carefully, because <span class="accent">Scammers are everywhere.</span></h1>
+            <p class="lead">
+              This is the official Mr Pastore landing page for finding the latest Telegram bot
+              link and confirming the real admin handle. If our bot is ever restricted, return here for
+              the newest verified access route.
+            </p>
+
+            <div class="actions" aria-label="Primary Telegram links">
+              <a class="button button-primary" href="https://t.me/mrpastore_bot?start=" rel="noopener">
+                Open Latest Bot
+              </a>
+              <a class="button button-secondary" href="https://t.me/mrpastore" rel="noopener">
+                Contact Admin
+              </a>
+            </div>
+
+            <p class="fine-print">
+              Forex trading involves risk. Always verify the exact handles on this page before
+              interacting with anyone claiming to represent Mr Pastore.
+            </p>
+          </div>
+
+          <aside class="verification" aria-label="Verified contact cards">
+            <div class="screen">
+              <div class="screen-head">
+                <p class="screen-title">Brand Verification Terminal</p>
+                <div class="bars" aria-hidden="true">
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                  <span class="bar"></span>
+                </div>
+              </div>
+
+              <div class="cards">
+                <article class="contact-card">
+                  <div class="card-kicker">
+                    <span>Telegram Bot</span>
+                    <span class="verified">Verified</span>
+                  </div>
+                  <a class="handle" href="https://t.me/mrpastore_bot?start=" rel="noopener">
+                    @mrpastore_bot
+                  </a>
+                  <p class="card-copy">
+                    Use this bot link for the latest Mr Pastore bot access. Bookmark this page in
+                    case Telegram restrictions affect any previous bot version.
+                  </p>
+                </article>
+
+                <article class="contact-card">
+                  <div class="card-kicker">
+                    <span>Admin</span>
+                    <span class="verified">Verified</span>
+                  </div>
+                  <a class="handle" href="https://t.me/mrpastore" rel="noopener">
+                    @mrpastore
+                  </a>
+                  <p class="card-copy">
+                    This is the official admin contact. Be cautious of similar usernames, fake
+                    profiles, or accounts asking you to move outside official channels.
+                  </p>
+                </article>
+              </div>
+
+              <p class="notice">
+                Important: Mr Pastore will only publish official bot access and admin contact
+                information through this page and the verified Telegram handles shown here.
+              </p>
+            </div>
+          </aside>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
